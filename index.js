@@ -6,28 +6,25 @@ const QUESTIONS = [
 ]
 
 function renderAnswer(answer) {
-    return `<li>${answer}</li>`;
+    return `<p class="quiz-entry__answer">${answer}</p>`;
 }
 
 function renderQuestion({ question, answers }) {
     return `
-      <div>
-        <p>${question}</p>
-        <ul>
-          ${answers.map(renderAnswer).join('')}
-        </ul>
+      <div class="quiz-entry">
+        <p class="quiz-entry__question">${question}</p>
+        ${answers.map(renderAnswer).join('')}
       </div>`;
 }
 
 function createRoot() {
     const root = document.createElement('div');
     document.querySelector('body').appendChild(root);
+    root.setAttribute('id', 'root');
     return root;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Ready for work!');
-
     const root = createRoot();
     root.innerHTML = renderQuestion(QUESTIONS[0]);
 });
