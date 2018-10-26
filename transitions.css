@@ -1,0 +1,57 @@
+/* Question fade */
+.quiz-entry__question
+{
+    transition: opacity .6s ease-out;
+}
+
+.quiz-entry-transition_in .quiz-entry__question
+{
+    opacity: 0;
+}
+
+.quiz-entry_transition_out .quiz-entry__question
+{
+    opacity: 0;
+}
+
+
+
+/* Answers fade + fly-in */
+.quiz-entry__answer-button
+{
+    transition: margin-top .6s ease-out,
+    opacity .6s ease-out;
+}
+
+.quiz-entry_transition_in .quiz-entry__answer-button
+{
+    margin-top: 200px;
+
+    opacity: 0;
+}
+
+.quiz-entry_transition_out .quiz-entry__answer-button
+{
+    margin-top: -200px;
+
+    opacity: 0;
+}
+
+
+/* Button transition delays */
+.quiz-entry > *:nth-child(2) .quiz-entry__answer-button
+{
+    transition-delay: .1s;
+}
+.quiz-entry > *:nth-child(3) .quiz-entry__answer-button
+{
+    transition-delay: .2s;
+}
+.quiz-entry > *:nth-child(4) .quiz-entry__answer-button
+{
+    transition-delay: .3s;
+}
+.quiz-entry > *:nth-child(5) .quiz-entry__answer-button
+{
+    transition-delay: .4s;
+}
