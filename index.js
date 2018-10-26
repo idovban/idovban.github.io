@@ -3,6 +3,10 @@ const QUESTIONS = [
         question: 'O RLY?',
         answers: [ 'YA RLY!', 'SRSLY?', 'Y U NO LIEK ME?!', 'LOL WUT' ]
     },
+    {
+        question: 'KOKOKO?',
+        answers: [ '111!', '2222?', '3333?!', '4444' ]
+    },
 ]
 
 function renderAnswer(answer) {
@@ -26,14 +30,38 @@ function createRoot() {
     return root;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const root = createRoot();
-    root.innerHTML = renderQuestion(QUESTIONS[0]);
+function mountQuestion(idx) {
+    document.getElementById('root').innerHTML = renderQuestion(QUESTIONS[idx]);
     setTimeout(() => {
         document.querySelector('.quiz-entry').classList.remove('quiz-entry_transition_in');
-    }, 10)
+    })
+}
 
-    document.body.onclick =() => {
-        document.querySelector('.quiz-entry').classList.add('quiz-entry_transition_out');
-    }
+function unmountQuestion() {
+    return new Promise((resolve, reject) => {
+        const question = document.querySelector('.quiz-entry');
+        question.classList.add('quiz-entry_transition_out');
+        setTimeout(() => {
+            question.parentNode.removeChild(question);
+            resolve(0);
+        }, 1000);
+    })
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const root = createRoot();
+
+    let questionIdx = 0;
+    mountQuestion(questionIdx);
+
+    document.querySelector('body').addEventListener('click', async (evt) => {
+        if (evt.target.getAttribute('class') !== 'quiz-entry__answer-button') {
+            return;
+        }
+
+        await unmountQuestion();
+        questionIdx += 1;
+        questionIdx = questionIdx % QUESTIONS.length;
+        mountQuestion(questionIdx);
+    });
 });

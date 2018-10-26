@@ -4,7 +4,7 @@
     transition: opacity .6s ease-out;
 }
 
-.quiz-entry-transition_in .quiz-entry__question
+.quiz-entry_transition_in .quiz-entry__question
 {
     opacity: 0;
 }
