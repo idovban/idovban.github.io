@@ -55,3 +55,20 @@
 {
     transition-delay: .4s;
 }
+
+
+/* Hero screen */
+.hero
+{
+    transition: opacity 1s ease-in-out;
+}
+
+.hero_transition_in
+{
+    opacity: 0;
+}
+
+.hero_transition_out
+{
+    opacity: 0;
+}

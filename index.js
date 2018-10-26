@@ -50,12 +50,17 @@ function unmountQuestion() {
     })
 }
 
+function mountHero(content) {
+    document.getElementById('root').innerHTML = `<div class="hero hero_transition_in">${content}</div>`;
+    setTimeout(() => document.querySelector('.hero').classList.remove('hero_transition_in'));
+}
+
 function mountSuccess() {
-    document.getElementById('root').innerHTML = `<div class="hero hero_transition_in">CONGRATULATIONS!!!!</div>`;
+    mountHero('CONGRATULATIONS!!!!');
 }
 
 function mountFailure() {
-    document.getElementById('root').innerHTML = `<div class="hero hero_transition_in">YOU HAVE TRIED</div>`;
+    mountHero('YOU HAVE TRIED');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
