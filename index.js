@@ -16,10 +16,12 @@ function renderAnswer(answer) {
 }
 
 function renderQuestion({ question, answers }) {
+    const randomAnswers = [].concat(answers)
+        .sort(() => Math.random() - 0.5)
     return `
       <div class="quiz-entry quiz-entry_transition_in">
         <p class="quiz-entry__question">${question}</p>
-        ${answers.map(renderAnswer).join('')}
+        ${randomAnswers.map(renderAnswer).join('')}
       </div>`;
 }
 
@@ -48,6 +50,14 @@ function unmountQuestion() {
     })
 }
 
+function mountSuccess() {
+    document.getElementById('root').innerHTML = `<div class="hero hero_transition_in">CONGRATULATIONS!!!!</div>`;
+}
+
+function mountFailure() {
+    document.getElementById('root').innerHTML = `<div class="hero hero_transition_in">YOU HAVE TRIED</div>`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const root = createRoot();
 
@@ -60,8 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         await unmountQuestion();
-        questionIdx += 1;
-        questionIdx = questionIdx % QUESTIONS.length;
-        mountQuestion(questionIdx);
+
+        if (evt.target.innerText === QUESTIONS[questionIdx].answers[0]) {
+            console.log('correct');
+            questionIdx += 1;
+            if (questionIdx === QUESTIONS.length) {
+                mountSuccess();
+            } else {
+                mountQuestion(questionIdx);
+            }
+        } else {
+            mountFailure()
+        }
     });
 });
