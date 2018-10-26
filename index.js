@@ -50,6 +50,23 @@ function unmountQuestion() {
     })
 }
 
+function unmountHero() {
+    return new Promise(resolve => {
+        const hero = document.querySelector('.hero');
+
+        hero.classList.add('hero_transition_out');
+        setTimeout(() => {
+            hero.parentNode.removeChild(hero);
+            resolve();
+        }, 1000);
+    })
+}
+
+function mountIntro() {
+    mountHero('WELCOME');
+    document.querySelector('.hero').setAttribute('id', 'intro');
+}
+
 function mountHero(content) {
     document.getElementById('root').innerHTML = `<div class="hero hero_transition_in">${content}</div>`;
     setTimeout(() => document.querySelector('.hero').classList.remove('hero_transition_in'));
@@ -57,35 +74,46 @@ function mountHero(content) {
 
 function mountSuccess() {
     mountHero('CONGRATULATIONS!!!!');
+    setTimeout(() => unmountHero().then(mountIntro), 5000);
 }
 
 function mountFailure() {
     mountHero('YOU HAVE TRIED');
+    setTimeout(() => unmountHero().then(mountIntro), 5000);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = createRoot();
 
-    let questionIdx = 0;
-    mountQuestion(questionIdx);
+    mountIntro();
 
+
+
+    let questionIdx;
     document.querySelector('body').addEventListener('click', async (evt) => {
-        if (evt.target.getAttribute('class') !== 'quiz-entry__answer-button') {
+        if (evt.target.getAttribute('id') === 'intro') {
+            questionIdx = 0;
+            mountQuestion(questionIdx);
             return;
         }
 
-        await unmountQuestion();
+        if (evt.target.getAttribute('class') === 'quiz-entry__answer-button') {
+            await unmountQuestion();
 
-        if (evt.target.innerText === QUESTIONS[questionIdx].answers[0]) {
-            console.log('correct');
-            questionIdx += 1;
-            if (questionIdx === QUESTIONS.length) {
-                mountSuccess();
+            if (evt.target.innerText === QUESTIONS[questionIdx].answers[0]) {
+                console.log('correct');
+                questionIdx += 1;
+                if (questionIdx === QUESTIONS.length) {
+                    mountSuccess();
+                } else {
+                    mountQuestion(questionIdx);
+                }
             } else {
-                mountQuestion(questionIdx);
+                mountFailure()
             }
-        } else {
-            mountFailure()
+
+            return;
         }
+
     });
 });
