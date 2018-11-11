@@ -241,9 +241,8 @@ const onClick = async (evt) => {
 document.addEventListener('DOMContentLoaded', () => {
     const root = createRoot();
 
-    mountIntro();
+  mountIntro();
 
     let questionIdx;
-    document.querySelector('body').addEventListener('click', onClick);
     document.querySelector('body').addEventListener('touchend', onClick);
 });
