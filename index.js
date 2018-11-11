@@ -210,38 +210,40 @@ function mountFailure() {
     setTimeout(() => unmountHero().then(mountIntro), 5000);
 }
 
+const onClick = async (evt) => {
+  console.log('insidwe');
+
+  if (evt.target.getAttribute('id') === 'intro') {
+    questionIdx = 0;
+    mountQuestion(questionIdx);
+    return;
+  }
+
+  if (evt.target.getAttribute('class') === 'quiz-entry__answer-button') {
+    await unmountQuestion();
+
+    if (evt.target.innerText === QUESTIONS[questionIdx].answers[0]) {
+      console.log('correct');
+      questionIdx += 1;
+      if (questionIdx === QUESTIONS.length) {
+        mountSuccess();
+      } else {
+        mountQuestion(questionIdx);
+      }
+    } else {
+      mountFailure()
+    }
+
+    return;
+  }
+
+}
 document.addEventListener('DOMContentLoaded', () => {
     const root = createRoot();
 
     mountIntro();
 
-
-
     let questionIdx;
-    document.querySelector('body').addEventListener('click', async (evt) => {
-        if (evt.target.getAttribute('id') === 'intro') {
-            questionIdx = 0;
-            mountQuestion(questionIdx);
-            return;
-        }
-
-        if (evt.target.getAttribute('class') === 'quiz-entry__answer-button') {
-            await unmountQuestion();
-
-            if (evt.target.innerText === QUESTIONS[questionIdx].answers[0]) {
-                console.log('correct');
-                questionIdx += 1;
-                if (questionIdx === QUESTIONS.length) {
-                    mountSuccess();
-                } else {
-                    mountQuestion(questionIdx);
-                }
-            } else {
-                mountFailure()
-            }
-
-            return;
-        }
-
-    });
+    document.querySelector('body').addEventListener('click', onClick);
+    document.querySelector('body').addEventListener('touchend', onClick);
 });
