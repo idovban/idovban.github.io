@@ -196,7 +196,7 @@ function unmountHero() {
 }
 
 function mountIntro() {
-    mountHero('WELCOME');
+    mountHero('Godel UK Quiz');
     document.querySelector('.hero').setAttribute('id', 'intro');
 }
 
@@ -206,12 +206,12 @@ function mountHero(content) {
 }
 
 function mountSuccess() {
-    mountHero('CONGRATULATIONS!!!!');
-    setTimeout(() => unmountHero().then(mountIntro), 5000);
+    mountHero('Congratulations! You have passed the quiz successfully and may proceed to the Godel Team to get a lottery number!');
+    setTimeout(() => unmountHero().then(mountIntro), 20000);
 }
 
 function mountFailure() {
-    mountHero('YOU HAVE TRIED');
+    mountHero('Sorry. You have tried.');
     setTimeout(() => unmountHero().then(mountIntro), 5000);
 }
 
