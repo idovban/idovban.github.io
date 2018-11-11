@@ -157,6 +157,11 @@ function createRoot() {
     const root = document.createElement('div');
     document.querySelector('body').appendChild(root);
     root.setAttribute('id', 'root');
+
+    const poweredBy = document.createElement('div');
+    document.querySelector('body').appendChild(poweredBy);
+    poweredBy.classList.add('powered-by');
+
     return root;
 }
 

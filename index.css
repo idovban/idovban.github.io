@@ -108,3 +108,23 @@
     color: #fff;
     text-shadow: 0 0px 20px #000;
 }
+
+.powered-by {
+  background: url('./logo.svg');
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 150px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+
+.powered-by::before {
+    content: 'Powered by';
+    font-size: 11px;
+    line-height: 1em;
+    position: absolute;
+    color: #324461;
+}
