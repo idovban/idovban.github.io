@@ -160,9 +160,9 @@ function mountFailure() {
 }
 
 const onClick = async (evt) => {
-  console.log('insidwe');
-
   if (evt.target.getAttribute('id') === 'intro') {
+    QUESTIONS.sort(() => (Math.round(Math.random() * 3) - 2));
+
     questionIdx = 0;
     mountQuestion(questionIdx);
     return;
@@ -187,6 +187,7 @@ const onClick = async (evt) => {
   }
 
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     const root = createRoot();
 
