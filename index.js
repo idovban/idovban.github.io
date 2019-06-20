@@ -16,22 +16,6 @@ const QUESTIONS = [
         ]
     },
     {
-        question: 'What is the capital of Scotland?',
-        answers: [
-            'Edinburgh',
-            'Belfast',
-            'Cardiff',
-        ]
-    },
-    {
-        question: 'What is the capital of Northern Ireland?',
-        answers: [
-            'Belfast',
-            'Edinburgh',
-            'Cardiff',
-        ]
-    },
-    {
         question: 'What is the London home of the Queen?',
         answers: [
             'Buckingham Palace',
@@ -40,35 +24,11 @@ const QUESTIONS = [
         ]
     },
     {
-        question: 'What birds live in the Tower of London?',
-        answers: [
-            'Ravens',
-            'Sparrows',
-            'Woodpeckers',
-        ]
-    },
-    {
-        question: 'What is in the centre of Trafalgar Square?',
-        answers: [
-            'Nelson’s Column',
-            'the Monument to Queen',
-            'the Monument to Peter Pan',
-        ]
-    },
-    {
         question: 'What city are the Beatles from?',
         answers: [
             'Liverpool',
             'Manchester',
             'London',
-        ]
-    },
-    {
-        question: 'What famous Scottish hero did Mel Gigson play in the film ‘Braveheart’?',
-        answers: [
-            'William Wallace',
-            'Winston Churchill',
-            'Charles Darwin',
         ]
     },
     {
@@ -85,14 +45,6 @@ const QUESTIONS = [
             'London Eye',
             'London Ear',
             'London Head',
-        ]
-    },
-    {
-        question: 'When did the famous Great Fire of London happen?',
-        answers: [
-            '1666',
-            '1656',
-            '1965',
         ]
     },
     {
@@ -125,14 +77,6 @@ const QUESTIONS = [
             'Scotland',
             'Wales',
             'England',
-        ]
-    },
-    {
-        question: 'What is the most important airport in Great Britain?',
-        answers: [
-            'Heathrow Airport',
-            'Stansted Airport',
-            'Gatwick Airport',
         ]
     },
 ]
